@@ -29,6 +29,25 @@ function diameterOfBinaryTreeBrtueForce(root) {
   return leftHeight + rightHeight;
 }
 
+function diameterOfBinaryTree(root) {
+  let diameter = 0;
+
+  function dfs(root) {
+    if (root === null) return 0;
+
+    const left = dfs(root.left);
+    const right = dfs(root.right);
+
+    diameter = Math.max(diameter, left + right);
+
+    return 1 + Math.max(left, right);
+  }
+
+  dfs(root);
+
+  return diameter;
+}
+
 const root = new Node(1);
 root.left = new Node(2);
 root.right = new Node(3);
